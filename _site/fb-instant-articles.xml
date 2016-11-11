@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title></title>
+    <link>http://localhost:8080</link>
+    <description>
+      
+    </description>
+    
+        
+            <item>
+                <title>Hello, my blog.</title>
+                <link>http://localhost:8080/general/hello-my-blog.html</link>
+                <content:encoded>
+                    <![CDATA[
+                    <h3 id="hello">Hello!!</h3>
+
+<p>It’s been a long time.</p>
+
+<p>I wanted to start my tech blog, just to leave something during my software development that might be helpful to others, and myself.</p>
+
+<p>So, it is today.</p>
+
+<p>Since I will be working on an IOS project that I had absolute zero experience. I think it is a good opportunity to write from beginning of my <a href="https://swift.org/">Swift</a>, <a href="https://developer.apple.com/xcode/">XCode</a>, and IOS related development things. I’ll be comparing what it is like to develop an IOS native app with web development and others. Hopefully that someone out there in the universe can learn something from this blog. :)</p>
+
+<blockquote>
+  <p>
+  When people think about computer science, they imagine people with pocket protectors and thick glasses who code all night.
+  </p>
+  <footer><cite title="Antoine de Saint-Exupéry">Marissa Mayer</cite></footer>
+</blockquote>
+
+                    ]]>
+                </content:encoded>
+                <guid isPermaLink="false">/general/hello-my-blog.html</guid>
+                <description>
+                    
+                    New start, write something useful!
+                    
+                </description>
+                <pubDate>Fri, 11 Nov 2016 06:31:19 -0800</pubDate>
+                <author>Kevin He</author>
+            </item>
+        
+    
+  </channel>
+</rss>
