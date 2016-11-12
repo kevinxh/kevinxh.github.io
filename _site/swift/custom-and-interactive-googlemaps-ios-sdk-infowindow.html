@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Custom and interactive googlemaps(IOS SDK) infowindow &#8211; Kevin He</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Replace default static UIImage with your interactive UIView">
+    <meta name="robots" content="all">
+    <meta name="author" content="Kevin He">
+    
+    <meta name="keywords" content="swift">
+    <link rel="canonical" href="http://localhost:8080/swift/custom-and-interactive-googlemaps-ios-sdk-infowindow.html">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Kevin He" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201611111706" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Custom and interactive googlemaps(IOS SDK) infowindow">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="http://localhost:8080/swift/custom-and-interactive-googlemaps-ios-sdk-infowindow.html">
+    <meta property="og:site_name" content="Kevin He">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Custom and interactive googlemaps(IOS SDK) infowindow" />
+    <meta name="twitter:description" content="Replace default static UIImage with your interactive UIView" />
+    <meta name="twitter:url" content="http://localhost:8080/swift/custom-and-interactive-googlemaps-ios-sdk-infowindow.html" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site animated fade-in-down">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://localhost:8080" class="site-title">Kevin He</a>
+      <nav class="site-nav">
+        
+    
+
+    
+        <a href="/about/">About Me</a>
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+        <a href="/contact/">Contanct</a>
+    
+
+    
+
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+      <a class="fa fa-github" href="https://github.com/kevinxh"></a>
+    
+    
+    
+      <a class="fa fa-stack-overflow" href="https://stackoverflow.com/users/5666628"></a>
+    
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:k.he933@gmail.com"></a>
+    
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Custom and interactive googlemaps(IOS SDK) infowindow</h1>
+  <span class="post-meta">Nov 11, 2016</span><br>
+  
+  <span class="post-meta small">
+  
+    4 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>Recently I am working on an IOS app called <em><span class="red">SFU Commute</span></em>, it contains a map view that will display a bunch of location markers, we want to customize the marker as well as the infowindow, becuase obviously <del>google map looks bad</del> we want the components to fit in the app style.</p>
+
+<h4 id="our-prototype-looks-like-this">Our prototype looks like this:</h4>
+
+<p><img src="/images/prototype1.jpg" height="500" />               <img src="/images/prototype2.jpg" height="500" /></p>
+
+<p>Then, I looked at <a href="https://developers.google.com/maps/documentation/ios-sdk/reference/protocol_g_m_s_map_view_delegate-p.html#ab83c3dab588f06e6227794740782bf55">documentation</a> of GMSMapView delegate about custom infowindow. It states that:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">GMSMapView</span><span class="p">,</span> <span class="n">markerInfoWindow</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt">GMSMarker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span> <span class="p">{</span>
+  <span class="c1">// Called when a marker is about to become selected,</span>
+  <span class="c1">// and provides an optional custom info window to use</span>
+  <span class="c1">// that marker if this method returns a UIView.</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="oh-nice-lets-just-use-this-delegate-method-to-create-the-uiview-of-the-infowindow">Oh, nice! Let’s just use this delegate method to create the UIView of the infowindow.</h3>
+<p><em>(Heads up: Don’t try, it won’t work!)</em></p>
+
+<p>So I added the delegate:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">MapView</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">GMSMapViewDelegate</span> <span class="p">{</span></code></pre></figure>
+
+<p>And return a custom class <em>mapMarkerInfoWindow(a subclass of UIView)</em> like this:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">GMSMapView</span><span class="p">,</span> <span class="n">markerInfoWindow</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt">GMSMarker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">infoWindow</span> <span class="o">=</span> <span class="nf">mapMarkerInfoWindow</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">))</span>
+
+  <span class="c1">//set up information to be shown</span>
+  <span class="n">infoWindow</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+  <span class="n">infoWindow</span><span class="o">.</span><span class="kt">Price</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">price</span><span class="o">.</span><span class="n">description</span>
+  <span class="n">infoWindow</span><span class="o">.</span><span class="kt">Zone</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">rawValue</span>
+  <span class="n">infoWindow</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">buttonTapped(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">infoWindow</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">buttonTapped</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"Yeah! Button is tapped!"</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Then the custom infowindow successfully showed up when I tap on the markers.
+But, when I tap on the buttons inside of the infowindow, <strong>nothing happens!</strong> Soon, I found out that googlemap renders infowindow as a UIImage, all interactions are discarded before the view gets loaded onto the screen. After that, I searched on google and stackoverflow, but I can only find people who ask this problem not a real solution for it. :(</p>
+
+<p>(Googlemap delegate provides a tap function to detect tap gesture on infowindow, but the function cannot make the buttons interactive as the whole infowindow is an image, so we need to work around that!)</p>
+
+<h2 id="my-solution">My Solution</h2>
+
+<p>I want to have buttons in the infowindow as it is very important for the workflow of the application, so I decided to find a way to work around it instead of change the design of the app! <em>(Isn’t this what software engineering is all about?)</em></p>
+
+<p>Because there is no way to make the googlemap’s infowindow to be interactive, I decided to go another route, make my own infowindow. You might be scared that will that be a lot of work? The answer is no.</p>
+
+<p>My solution is basically disable the googlemaps’ infowindow by set it to <del>nil</del> empty UIView object. Create a custom infowindow that is a part of the mapview. It follows the logic:</p>
+<ul>
+  <li>Whenever a marker is tapped, use <em>GMSProjection</em> object to map the location coordinates to a point on screen, render the custom infowindow on the point on screen. So it looks like a corresponding infowindow is poped up.</li>
+  <li>Whenever the camera view is changed (i.e. user drags or zooms in the map), get the new point of the marker and move the infowindow to where the marker is at. So the infowindow will always be on top of the marker.</li>
+  <li>Take care of the open/close actions of the custom infowindow.</li>
+  <li>Remeber to keep the marker and infowindow object.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// initialize and keep a marker and a custom infowindow</span>
+    <span class="k">var</span> <span class="nv">tappedMarker</span> <span class="o">=</span> <span class="kt">GMSMarker</span><span class="p">()</span>
+    <span class="k">var</span> <span class="nv">infoWindow</span> <span class="o">=</span> <span class="nf">mapMarkerInfoWindow</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">))</span>
+
+    <span class="c1">//empty the default infowindow</span>
+    <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">GMSMapView</span><span class="p">,</span> <span class="n">markerInfoWindow</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt">GMSMarker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">UIView</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// reset custom infowindow whenever marker is tapped</span>
+    <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">GMSMapView</span><span class="p">,</span> <span class="n">didTap</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt">GMSMarker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">location</span> <span class="o">=</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">lon</span><span class="p">)</span>
+
+        <span class="n">tappedMarker</span> <span class="o">=</span> <span class="n">marker</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="nf">removeFromSuperview</span><span class="p">()</span>
+        <span class="n">infoWindow</span> <span class="o">=</span> <span class="nf">mapMarkerInfoWindow</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="kt">Price</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">price</span><span class="o">.</span><span class="n">description</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="kt">Zone</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">rawValue</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">mapView</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="nf">point</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">location</span><span class="p">)</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">buttonTapped(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">infoWindow</span><span class="p">)</span>
+
+        <span class="c1">// Remember to return false</span>
+        <span class="c1">// so marker event is still handled by delegate</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// let the custom infowindow follows the camera</span>
+    <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">GMSMapView</span><span class="p">,</span> <span class="n">didChange</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">GMSCameraPosition</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">tappedMarker</span><span class="o">.</span><span class="n">userData</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">){</span>
+            <span class="k">let</span> <span class="nv">location</span> <span class="o">=</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="p">(</span><span class="n">tappedMarker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="p">(</span><span class="n">tappedMarker</span><span class="o">.</span><span class="n">userData</span> <span class="k">as!</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span><span class="n">lon</span><span class="p">)</span>
+            <span class="n">infoWindow</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">mapView</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="nf">point</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">location</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// take care of the close event</span>
+    <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">GMSMapView</span><span class="p">,</span> <span class="n">didTapAt</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">infoWindow</span><span class="o">.</span><span class="nf">removeFromSuperview</span><span class="p">()</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>Now, we have complete control over the custom infowindow, you can add buttons, labels, and whatever you want on the custom infowindow!</p>
+
+<p>Downside of my solution is that if you have navigation bar on top of the screen, and possibly prompt in the navigation item, there exists an offset y value for the infowindow, so the infowindow is not right on top of the marker, we need to bypass this problem by manually correct the offset.</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift">  <span class="c1">// you need to determine this possible offset</span>
+  <span class="c1">// for me it was 80</span>
+  <span class="n">infowindow</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">80</span></code></pre></figure>
+
+<h4 id="thanks-thats-it-for-customizing-ios-google-map-marker-infowindow-i-hope-it-could-help-someone-solve-the-problem">Thanks! That’s it for customizing IOS google map marker infowindow, I hope it could help someone solve the problem!</h4>
+
+</article>
+
+
+
+
+  <div class="py2 post-footer">
+  <img src="/images/me.jpeg" alt="Kevin He" class="avatar" />
+  <p>
+    <a href="/about">Kevin He</a> is a software developer & startup enthusiast. Currently studing Computer Engineering at Simon Fraser University.
+  </p>
+  <p>
+    Follow him on <a href="https://github.com/kevinxh">GitHub</a>.
+  </p>
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      Crafted with &lt;3 by <a href="/about">Kevin He</a> using <a href="https://github.com/johnotander/pixyll">Pixyll</a>.
+    </small>
+  </div>
+</footer>
+
+
+</body>
+</html>
