@@ -4,7 +4,7 @@ email:       k.he933@gmail.com
 author:      Kevin He
 description: ""
 baseurl:     ""
-url:         "http://kevinxh.github.io/"
+url:         "http://kevinxh.github.io"
 date_format: "%b %-d, %Y"
 
 # Serving

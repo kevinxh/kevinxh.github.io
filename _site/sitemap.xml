@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:8080/swift/custom-and-interactive-googlemaps-ios-sdk-infowindow.html</loc>
+    <loc>http://kevinxh.github.io/swift/custom-and-interactive-googlemaps-ios-sdk-infowindow.html</loc>
     <lastmod>2016-11-11T07:30:19-08:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:8080/general/hello-my-blog.html</loc>
+    <loc>http://kevinxh.github.io/general/hello-my-blog.html</loc>
     <lastmod>2016-11-11T06:31:19-08:00</lastmod>
   </url>
   <url>
-    <loc>http://localhost:8080/404.html</loc>
+    <loc>http://kevinxh.github.io/404.html</loc>
   </url>
   <url>
-    <loc>http://localhost:8080/about/</loc>
+    <loc>http://kevinxh.github.io/about/</loc>
   </url>
   <url>
-    <loc>http://localhost:8080/contact/</loc>
+    <loc>http://kevinxh.github.io/contact/</loc>
   </url>
   <url>
-    <loc>http://localhost:8080/</loc>
+    <loc>http://kevinxh.github.io/</loc>
   </url>
   <url>
-    <loc>http://localhost:8080/thanks/</loc>
+    <loc>http://kevinxh.github.io/thanks/</loc>
   </url>
 </urlset>
