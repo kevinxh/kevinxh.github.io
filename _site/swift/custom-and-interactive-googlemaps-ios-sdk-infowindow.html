@@ -17,7 +17,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for Kevin He" href="/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201611111818" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201611211428" type="text/css">
 
     <!-- Fonts -->
     
@@ -204,7 +204,7 @@
 <span class="p">}</span></code></pre></div>
 
 <p>Then the custom infowindow successfully showed up when I tap on the markers.
-But, when I tap on the buttons inside of the infowindow, <strong>nothing happens!</strong> Soon, I found out that googlemap renders infowindow as a UIImage, all interactions are discarded before the view gets loaded onto the screen. After that, I searched on google and stackoverflow, but I can only find people who ask this problem not a real solution for it. :(</p>
+But, when I tap on the buttons inside of the infowindow, <strong>nothing happens!</strong> Soon, I found out that googlemap renders infowindow as a UIImage, all interactions are discarded before the view gets loaded onto the screen. After that, I searched on google and stackoverflow, I can only find people who ask about this problem but not a real solution for it. :(</p>
 
 <p>(Googlemap delegate provides a tap function to detect tap gesture on infowindow, but the function cannot make the buttons interactive as the whole infowindow is an image, so we need to work around that!)</p>
 
@@ -214,11 +214,14 @@ But, when I tap on the buttons inside of the infowindow, <strong>nothing happens
 
 <p>Because there is no way to make the googlemap’s infowindow to be interactive, I decided to go another route, make my own infowindow. You might be scared that will that be a lot of work? The answer is no.</p>
 
-<p>My solution is basically disable the googlemaps’ infowindow by set it to <del>nil</del> empty UIView object. Create a custom infowindow that is a part of the mapview. It follows the logic:
-* Whenever a marker is tapped, use <em>GMSProjection</em> object to map the location coordinates to a point on screen, render the custom infowindow on the point on screen. So it looks like a corresponding infowindow is poped up.
-* Whenever the camera view is changed (i.e. user drags or zooms in the map), get the new point of the marker and move the infowindow to where the marker is at. So the infowindow will always be on top of the marker.
-* Take care of the open/close actions of the custom infowindow.
-* Remeber to keep the marker and infowindow object.</p>
+<p>My solution is basically disable the googlemaps’ infowindow by set it to <del>nil</del> empty UIView object. Create a custom infowindow that is a part of the mapview. It follows the logic:</p>
+
+<ul>
+  <li>Whenever a marker is tapped, use <em>GMSProjection</em> object to map the location coordinates to a point on screen, render the custom infowindow on the point on screen. So it looks like a corresponding infowindow is poped up.</li>
+  <li>Whenever the camera view is changed (i.e. user drags or zooms in the map), get the new point of the marker and move the infowindow to where the marker is at. So the infowindow will always be on top of the marker.</li>
+  <li>Take care of the open/close actions of the custom infowindow.</li>
+  <li>Remeber to keep the marker and infowindow object.</li>
+</ul>
 
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// initialize and keep a marker and a custom infowindow</span>
     <span class="k">var</span> <span class="n">tappedMarker</span> <span class="o">=</span> <span class="n">GMSMarker</span><span class="p">()</span>
@@ -267,7 +270,7 @@ But, when I tap on the buttons inside of the infowindow, <strong>nothing happens
 
 <div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// you need to determine this possible offset</span>
   <span class="c1">// for me it was 80</span>
-  <span class="n">infowindow</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">80</span></code></pre></div>
+  <span class="n">infowindow</span><span class="p">.</span><span class="n">center</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mi">80</span></code></pre></div>
 
 <h4 id="thanks-thats-it-for-customizing-ios-google-map-marker-infowindow-i-hope-it-could-help-someone-solve-the-problem">Thanks! That’s it for customizing IOS google map marker infowindow, I hope it could help someone solve the problem!</h4>
 

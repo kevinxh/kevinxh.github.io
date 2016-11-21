@@ -49,7 +49,7 @@ func buttonTapped(_ sender: UIButton!) {
 {% endhighlight %}
 
 Then the custom infowindow successfully showed up when I tap on the markers.
-But, when I tap on the buttons inside of the infowindow, __nothing happens!__ Soon, I found out that googlemap renders infowindow as a UIImage, all interactions are discarded before the view gets loaded onto the screen. After that, I searched on google and stackoverflow, but I can only find people who ask this problem not a real solution for it. :(
+But, when I tap on the buttons inside of the infowindow, __nothing happens!__ Soon, I found out that googlemap renders infowindow as a UIImage, all interactions are discarded before the view gets loaded onto the screen. After that, I searched on google and stackoverflow, I can only find people who ask about this problem but not a real solution for it. :(
 
 (Googlemap delegate provides a tap function to detect tap gesture on infowindow, but the function cannot make the buttons interactive as the whole infowindow is an image, so we need to work around that!)
 
@@ -60,10 +60,11 @@ I want to have buttons in the infowindow as it is very important for the workflo
 Because there is no way to make the googlemap's infowindow to be interactive, I decided to go another route, make my own infowindow. You might be scared that will that be a lot of work? The answer is no.
 
 My solution is basically disable the googlemaps' infowindow by set it to <del>nil</del> empty UIView object. Create a custom infowindow that is a part of the mapview. It follows the logic:
-* Whenever a marker is tapped, use _GMSProjection_ object to map the location coordinates to a point on screen, render the custom infowindow on the point on screen. So it looks like a corresponding infowindow is poped up.
-* Whenever the camera view is changed (i.e. user drags or zooms in the map), get the new point of the marker and move the infowindow to where the marker is at. So the infowindow will always be on top of the marker.
-* Take care of the open/close actions of the custom infowindow.
-* Remeber to keep the marker and infowindow object.
+
+- Whenever a marker is tapped, use _GMSProjection_ object to map the location coordinates to a point on screen, render the custom infowindow on the point on screen. So it looks like a corresponding infowindow is poped up.
+- Whenever the camera view is changed (i.e. user drags or zooms in the map), get the new point of the marker and move the infowindow to where the marker is at. So the infowindow will always be on top of the marker.
+- Take care of the open/close actions of the custom infowindow.
+- Remeber to keep the marker and infowindow object.
 
 {% highlight swift %}
 // initialize and keep a marker and a custom infowindow
@@ -115,7 +116,7 @@ Downside of my solution is that if you have navigation bar on top of the screen,
 {% highlight swift %}
   // you need to determine this possible offset
   // for me it was 80
-  infowindow.center.x += 80
+  infowindow.center.y += 80
 {% endhighlight %}
 
 #### Thanks! That's it for customizing IOS google map marker infowindow, I hope it could help someone solve the problem!
