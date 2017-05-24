@@ -29,11 +29,23 @@ input[type=week] {
 select {
   box-sizing: border-box;
   line-height: 1.75;
-  padding: $form-field-padding-y $form-field-padding-x;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  padding: $select-padding-y $select-padding-x;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: $h5;
+  font-weight: 600;
+  font-family: $heading-font-family;
 }
 
 select:not([multiple]) {
-  height: $form-field-height;
+  height: $select-height;
   vertical-align: middle;
 }
 
