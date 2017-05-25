@@ -1,0 +1,32 @@
+.card {
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+    min-height: 250px;
+    padding: 48px 24px 24px 24px;
+
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    text-align: center;
+    .title {
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 24px;
+      text-transform: capitalize;
+    }
+
+    .info {
+      width: 100%;
+      min-height: 120px;
+
+      .address {
+        height: 70px;
+      }
+    }
+
+    .cta{
+      position: relative;
+      width: 100%;
+    }
+}
