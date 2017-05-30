@@ -3,12 +3,13 @@
 
     display: block;
     overflow: hidden;
-    min-height: 250px;
+    min-height: 200px;
     padding: 48px 24px 24px 24px;
 
     border: 1px solid $border-color;
     border-radius: 5px;
     text-align: center;
+
     .title {
       width: 100%;
       margin-top: 0;
@@ -16,9 +17,14 @@
       text-transform: capitalize;
     }
 
+    .fullSizeIcon {
+      width: 200px;
+      height: 200px;
+    }
+
     .info {
       width: 100%;
-      min-height: 120px;
+      min-height: 80px;
 
       .address {
         height: 50px;

@@ -693,7 +693,7 @@ button,
   position: relative;
   display: block;
   overflow: hidden;
-  min-height: 250px;
+  min-height: 200px;
   padding: 48px 24px 24px 24px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -703,9 +703,12 @@ button,
     margin-top: 0;
     margin-bottom: 24px;
     text-transform: capitalize; }
+  .card .fullSizeIcon {
+    width: 200px;
+    height: 200px; }
   .card .info {
     width: 100%;
-    min-height: 120px; }
+    min-height: 80px; }
     .card .info .address {
       height: 50px; }
   .card .cta {
