@@ -16,6 +16,6 @@ tags: dinepicker
     <h3 class="address"></h3>
     <h3 class="hours"></h3>
   </div>
-  <button id="cta" href="" type="button" class="button button-blue cta"></button>
+  <a id="cta" href="" type="button" class="button button-blue cta"></a>
 </div>
 <script type="text/javascript" src="/js/dinepicker.js"></script>
