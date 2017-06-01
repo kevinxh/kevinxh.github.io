@@ -26,6 +26,8 @@ list.push(new Restaurant('Yahyaya Ramen', vancouverDowntown, '18431759'));
 list.push(new Restaurant('Five Guys', vancouverDowntown, '16626546'));
 list.push(new Restaurant('O Sushi', vancouverDowntown, '16627598'));
 list.push(new Restaurant('Zac-Zac Japanese Curry House', vancouverDowntown, '16626755'));
+list.push(new Restaurant('Gyudon Ya', vancouverDowntown, '16622972'));
+list.push(new Restaurant('Burger King', vancouverDowntown, '16626035'));
 
 // LOL, this is a really bad practice to expose API key in public
 // But I'll do it just to save time to make this little tool
